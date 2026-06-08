@@ -1,0 +1,4 @@
+interface:
+  display_name: "SWVNV Guide Start"
+  short_description: "Route broad SWVNV requests"
+  default_prompt: "Use $swvnv-guide-start to assess the SWVNV project state and recommend the next workflow."

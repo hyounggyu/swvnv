@@ -1,0 +1,26 @@
+risk_controls:
+  - id: RC-001
+    title: User review of AI segmentation
+    risk: User may rely on inaccurate segmentation without review.
+    control: The software shall present segmentation as an overlay that the user can review and hide.
+    related_requirements:
+      - SR-005
+    verified_by:
+      - ST-005
+  - id: RC-002
+    title: AI output limitation statement
+    risk: User may interpret AI segmentation as an autonomous diagnosis.
+    control: Product labeling and user-facing text shall state that AI segmentation is assistive and requires user review.
+    related_requirements:
+      - SR-004
+    verified_by:
+      - ST-004
+  - id: RC-003
+    title: AI-assisted measurement indicator
+    risk: Measurement reports may not distinguish manual measurements from AI-assisted measurements.
+    control: Measurements derived from AI-generated masks shall be labeled as AI-assisted.
+    related_requirements:
+      - SR-006
+    verified_by:
+      - ST-006
+

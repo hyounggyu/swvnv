@@ -1,0 +1,4 @@
+interface:
+  display_name: "SWVNV Dev Python"
+  short_description: "Run and format Python scripts"
+  default_prompt: "Use $swvnv-dev-python to run, format, lint, or manage Python scripts for this project."

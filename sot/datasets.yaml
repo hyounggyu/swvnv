@@ -1,0 +1,19 @@
+datasets:
+  - id: DS-VAL-001
+    name: Example CT Segmentation Validation Dataset
+    purpose: validation
+    modality: CT
+    sample_count: 50
+    anatomy: supported anatomy region
+    inclusion_criteria:
+      - Adult CT DICOM series with complete image metadata
+      - Slice thickness within the supported range
+      - Reference segmentation mask available
+    exclusion_criteria:
+      - Severe motion artifact
+      - Missing rescale slope or intercept metadata
+      - Unsupported acquisition geometry
+    related_model: MODEL-001
+    related_system_tests:
+      - ST-004
+

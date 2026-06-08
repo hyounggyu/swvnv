@@ -1,0 +1,4 @@
+interface:
+  display_name: "SWVNV Dev Skill Authoring"
+  short_description: "Add or improve SWVNV skills"
+  default_prompt: "Use $swvnv-dev-skill-authoring to decide whether to add or improve a SWVNV skill."

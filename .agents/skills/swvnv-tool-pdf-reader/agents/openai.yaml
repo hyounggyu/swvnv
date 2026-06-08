@@ -1,0 +1,4 @@
+interface:
+  display_name: "SWVNV Tool PDF Reader"
+  short_description: "Search PDFs and inspect key pages"
+  default_prompt: "Use $swvnv-tool-pdf-reader to inspect PDF evidence with cited pages."

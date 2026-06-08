@@ -1,0 +1,4 @@
+interface:
+  display_name: "SWVNV Dev Typst"
+  short_description: "Build Typst documents"
+  default_prompt: "Use $swvnv-dev-typst to build or maintain SWVNV Typst documents."

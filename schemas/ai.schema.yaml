@@ -1,0 +1,34 @@
+schema: ai_segmentation_metadata
+roots:
+  ai_models:
+    required_fields:
+      - id
+      - name
+      - version
+      - task
+      - related_requirements
+      - related_system_tests
+  datasets:
+    required_fields:
+      - id
+      - name
+      - purpose
+      - sample_count
+      - related_model
+      - related_system_tests
+  performance_metrics:
+    required_fields:
+      - id
+      - name
+      - acceptance_criterion
+      - related_model
+      - related_system_tests
+  risk_controls:
+    required_fields:
+      - id
+      - title
+      - risk
+      - control
+      - related_requirements
+      - verified_by
+

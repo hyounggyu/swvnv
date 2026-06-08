@@ -1,0 +1,22 @@
+schema: tests
+roots:
+  unit_tests:
+    id_prefix: UT
+    verifies_prefixes:
+      - SD
+  integration_tests:
+    id_prefix: IT
+    verifies_prefixes:
+      - SA
+      - SR
+  system_tests:
+    id_prefix: ST
+    verifies_prefixes:
+      - SR
+required_fields:
+  - id
+  - title
+  - verifies
+  - procedure
+  - acceptance_criteria
+

@@ -1,0 +1,137 @@
+unit_tests:
+  - id: UT-001
+    title: DICOM series validation rejects non-CT input
+    verifies:
+      - SD-001
+    procedure: Provide a non-CT DICOM series and confirm that import validation rejects it with a user-readable error.
+    acceptance_criteria: Non-CT input is rejected and no image data is loaded.
+  - id: UT-002
+    title: Window and level transformation maps HU values correctly
+    verifies:
+      - SD-002
+    procedure: Apply known window and level values to a synthetic HU array.
+    acceptance_criteria: Output intensity values match expected values within rounding tolerance.
+  - id: UT-003
+    title: ROI statistics calculation returns expected HU values
+    verifies:
+      - SD-003
+    procedure: Calculate statistics for a predefined ROI in a synthetic CT slice.
+    acceptance_criteria: Mean, minimum, and maximum HU values match the expected result.
+  - id: UT-004
+    title: AI preprocessing creates model-compatible tensor
+    verifies:
+      - SD-004
+    procedure: Run preprocessing on a representative CT volume.
+    acceptance_criteria: Tensor shape, spacing metadata, and normalization range match the model specification.
+  - id: UT-005
+    title: Segmentation mask postprocessing preserves geometry
+    verifies:
+      - SD-005
+    procedure: Convert a known model output mask to image space.
+    acceptance_criteria: Mask dimensions and orientation match the source CT series.
+  - id: UT-006
+    title: Overlay visibility control toggles state without changing image data
+    verifies:
+      - SD-006
+    procedure: Toggle overlay visibility while tracking source image data checksum.
+    acceptance_criteria: Overlay visibility changes and source image checksum remains unchanged.
+  - id: UT-007
+    title: AI-assisted measurement labeling is applied
+    verifies:
+      - SD-007
+    procedure: Create a measurement from an AI-generated mask.
+    acceptance_criteria: Measurement metadata includes the AI-assisted indicator.
+  - id: UT-008
+    title: Report content assembly includes required fields
+    verifies:
+      - SD-008
+    procedure: Assemble a report from representative metadata and measurement inputs.
+    acceptance_criteria: Report content includes patient-neutral image metadata, ROI statistics, and AI-assistance indicators.
+integration_tests:
+  - id: IT-001
+    title: Importer loads a valid CT DICOM series
+    verifies:
+      - SA-001
+      - SR-001
+    procedure: Import a valid CT DICOM series and confirm image metadata is available to downstream components.
+    acceptance_criteria: The series is loaded and metadata is passed to the viewer.
+  - id: IT-002
+    title: Viewer displays imported CT slices
+    verifies:
+      - SA-002
+      - SR-002
+    procedure: Load a CT series and navigate through axial slices.
+    acceptance_criteria: Slices render in the expected order with window and level controls.
+  - id: IT-003
+    title: Measurement engine receives calibrated image data
+    verifies:
+      - SA-003
+      - SR-003
+    procedure: Import a CT series and calculate ROI statistics using calibrated HU values.
+    acceptance_criteria: Measurement results use rescaled HU values.
+  - id: IT-004
+    title: AI segmentation pipeline produces aligned masks
+    verifies:
+      - SA-004
+      - SR-004
+    procedure: Run preprocessing, inference, and postprocessing for a representative CT series.
+    acceptance_criteria: The output mask aligns with the source image geometry.
+  - id: IT-005
+    title: Overlay renderer displays AI segmentation mask
+    verifies:
+      - SA-005
+      - SR-005
+    procedure: Load a segmentation mask and display it over the CT viewer.
+    acceptance_criteria: The overlay is shown and hidden according to user control.
+  - id: IT-006
+    title: Report exporter receives AI-assistance indicators
+    verifies:
+      - SA-006
+      - SR-006
+      - SR-007
+    procedure: Export a measurement report after creating AI-assisted and manual measurements.
+    acceptance_criteria: The exported report identifies which measurements used AI-generated masks.
+system_tests:
+  - id: ST-001
+    title: User imports CT DICOM series
+    verifies:
+      - SR-001
+    procedure: Import a supported CT DICOM series from local storage.
+    acceptance_criteria: The software accepts the series and displays import metadata.
+  - id: ST-002
+    title: User views CT image slices
+    verifies:
+      - SR-002
+    procedure: Navigate through an imported CT series and adjust window and level.
+    acceptance_criteria: Image slices are displayed and visual controls respond as expected.
+  - id: ST-003
+    title: User measures ROI HU statistics
+    verifies:
+      - SR-003
+    procedure: Draw an ROI and calculate HU statistics.
+    acceptance_criteria: The software displays mean, minimum, and maximum HU values.
+  - id: ST-004
+    title: AI segmentation performance meets planned criterion
+    verifies:
+      - SR-004
+    procedure: Run AI segmentation on the validation dataset and calculate the planned segmentation metric.
+    acceptance_criteria: Acceptance criteria defined in performance metrics are met.
+  - id: ST-005
+    title: User reviews segmentation overlay
+    verifies:
+      - SR-005
+    procedure: Show and hide AI segmentation overlays after segmentation completes.
+    acceptance_criteria: The user can review and control overlay visibility.
+  - id: ST-006
+    title: AI-assisted measurements are labeled
+    verifies:
+      - SR-006
+    procedure: Create a measurement using an AI-generated mask and inspect the measurement display.
+    acceptance_criteria: The measurement clearly indicates AI assistance.
+  - id: ST-007
+    title: User exports measurement report
+    verifies:
+      - SR-007
+    procedure: Export a report after creating manual and AI-assisted measurements.
+    acceptance_criteria: The exported report contains image metadata, ROI statistics, and AI-assistance indicators.
+

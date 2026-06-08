@@ -1,0 +1,4 @@
+interface:
+  display_name: "SWVNV Dev Git"
+  short_description: "Write Git commit messages"
+  default_prompt: "Use $swvnv-dev-git to write or review SWVNV Git commit messages."

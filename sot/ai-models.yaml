@@ -1,0 +1,30 @@
+ai_models:
+  - id: MODEL-001
+    name: CT Organ Segmentation Model
+    version: "0.1.0-example"
+    task: image_segmentation
+    input:
+      modality: CT
+      format: DICOM series converted to normalized volume tensor
+    output:
+      type: binary segmentation mask
+      target: supported anatomy region
+    intended_use_limitation: >
+      The model output is assistive, requires user review, and is not intended
+      to provide autonomous diagnosis.
+    related_requirements:
+      - SR-004
+      - SR-005
+      - SR-006
+    related_architecture:
+      - SA-004
+      - SA-005
+    related_design:
+      - SD-004
+      - SD-005
+      - SD-006
+    related_system_tests:
+      - ST-004
+      - ST-005
+      - ST-006
+

@@ -1,0 +1,10 @@
+plan:
+  lifecycle_model: Incremental development with document-controlled reviews.
+  configuration_management: Source data, Typst documents, and scripts are version controlled in Git.
+  problem_resolution: Issues are tracked and resolved before document release.
+  verification_strategy: Verification coverage is planned through traceability from SR items to UT, IT, and ST items.
+  ai_model_controls:
+    - AI model version is recorded in the YAML source of truth.
+    - Validation dataset scope and planned acceptance metrics are documented before release.
+    - AI segmentation is limited to assistive use and user review is required.
+

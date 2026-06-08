@@ -1,0 +1,27 @@
+project:
+  name: CT Analysis Workstation
+  product_code: CTAW
+  version: "0.1.0"
+  manufacturer:
+    name: Example Healthcare Software Co.
+  intended_use: >
+    CT Analysis Workstation is standalone software intended to import computed
+    tomography DICOM series, display image slices, assist users with AI-based
+    segmentation overlays, support ROI and HU measurements, and export
+    measurement reports. The software does not provide autonomous diagnosis.
+  intended_users:
+    - Radiologist
+    - Trained clinical specialist
+    - Clinical researcher
+  operating_environment:
+    - Desktop workstation
+    - Hospital network environment
+    - Local DICOM file storage
+  software_safety_class: B
+  regulatory_context:
+    primary_standard: IEC 62304
+    lifecycle_scope: Example SW V&V documentation workflow
+  limitations:
+    - AI segmentation output is assistive and must be reviewed by the user.
+    - The software does not provide autonomous diagnostic conclusions.
+    - Example data is for documentation practice only.

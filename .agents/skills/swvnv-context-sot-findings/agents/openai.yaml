@@ -1,0 +1,4 @@
+interface:
+  display_name: "SWVNV Context SoT Findings"
+  short_description: "Report context-derived SoT gaps"
+  default_prompt: "Use $swvnv-context-sot-findings to report possible SoT changes from context evidence."

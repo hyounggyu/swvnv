@@ -1,0 +1,4 @@
+interface:
+  display_name: "SWVNV Context Retrieval"
+  short_description: "Find context evidence for SoT or document work"
+  default_prompt: "Use $swvnv-context-retrieval to find relevant SoT and context evidence."

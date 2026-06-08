@@ -1,0 +1,15 @@
+schema: architecture
+root: architecture_items
+required_fields:
+  - id
+  - title
+  - description
+  - related_requirements
+  - related_design
+  - verified_by
+id_prefix: SA
+reference_fields:
+  related_requirements: SR
+  related_design: SD
+  verified_by: IT
+

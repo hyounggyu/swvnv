@@ -1,0 +1,85 @@
+documents:
+  - id: sdp
+    number: CTAW-SDP-001
+    title: Software Development Plan
+    version: "0.1.0"
+    status: Draft
+    output: 01-software-development-plan.pdf
+    approvers:
+      - role: Software Lead
+        name: TBD
+      - role: Quality Lead
+        name: TBD
+  - id: srs
+    number: CTAW-SR-001
+    title: Software Requirements Specification
+    version: "0.1.0"
+    status: Draft
+    output: 02-software-requirements-specification.pdf
+    approvers:
+      - role: Software Lead
+        name: TBD
+      - role: Quality Lead
+        name: TBD
+  - id: sad
+    number: CTAW-SA-001
+    title: Software Architecture Design
+    version: "0.1.0"
+    status: Draft
+    output: 03-software-architecture-design.pdf
+    approvers:
+      - role: Software Architect
+        name: TBD
+  - id: sdd
+    number: CTAW-SD-001
+    title: Software Detailed Design
+    version: "0.1.0"
+    status: Draft
+    output: 04-software-detailed-design.pdf
+    approvers:
+      - role: Software Lead
+        name: TBD
+  - id: unit-test
+    number: CTAW-UT-001
+    title: Unit Test
+    version: "0.1.0"
+    status: Draft
+    output: 05-unit-test.pdf
+    approvers:
+      - role: Software Lead
+        name: TBD
+  - id: integration-test
+    number: CTAW-IT-001
+    title: Integration Test
+    version: "0.1.0"
+    status: Draft
+    output: 06-integration-test.pdf
+    approvers:
+      - role: Software Lead
+        name: TBD
+  - id: system-test
+    number: CTAW-ST-001
+    title: System Test
+    version: "0.1.0"
+    status: Draft
+    output: 07-system-test.pdf
+    approvers:
+      - role: Quality Lead
+        name: TBD
+  - id: vv-report
+    number: CTAW-VVR-001
+    title: Software Verification and Validation Report
+    version: "0.1.0"
+    status: Draft
+    output: 08-sw-vv-report.pdf
+    approvers:
+      - role: Software Lead
+        name: TBD
+      - role: Quality Lead
+        name: TBD
+revision_history:
+  - version: "0.1.0"
+    date: "2026-05-31"
+    description: Initial executable documentation example.
+    author: SWVNV project
+

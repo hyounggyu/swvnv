@@ -1,0 +1,59 @@
+architecture_items:
+  - id: SA-001
+    title: DICOM Importer
+    description: Loads and validates local CT DICOM series before making image data available to other components.
+    related_requirements:
+      - SR-001
+    related_design:
+      - SD-001
+    verified_by:
+      - IT-001
+  - id: SA-002
+    title: Image Viewer
+    description: Presents CT slices with interactive window and level controls.
+    related_requirements:
+      - SR-002
+    related_design:
+      - SD-002
+    verified_by:
+      - IT-002
+  - id: SA-003
+    title: Measurement Engine
+    description: Computes ROI HU statistics from calibrated CT voxel data.
+    related_requirements:
+      - SR-003
+    related_design:
+      - SD-003
+    verified_by:
+      - IT-003
+  - id: SA-004
+    title: AI Segmentation Engine
+    description: Runs the configured segmentation model and produces a binary segmentation mask.
+    related_requirements:
+      - SR-004
+    related_design:
+      - SD-004
+      - SD-005
+    verified_by:
+      - IT-004
+  - id: SA-005
+    title: Segmentation Overlay Renderer
+    description: Renders AI-generated masks as overlays that users can show, hide, and review.
+    related_requirements:
+      - SR-005
+    related_design:
+      - SD-006
+    verified_by:
+      - IT-005
+  - id: SA-006
+    title: Report Exporter
+    description: Generates measurement reports with image metadata, measurement values, and AI-assistance indicators.
+    related_requirements:
+      - SR-006
+      - SR-007
+    related_design:
+      - SD-007
+      - SD-008
+    verified_by:
+      - IT-006
+

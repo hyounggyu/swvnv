@@ -1,0 +1,80 @@
+requirements:
+  - id: SR-001
+    title: Import CT DICOM series
+    description: The software shall import a CT DICOM series from local storage.
+    rationale: CT image import is required before viewing, measurement, or segmentation.
+    related_architecture:
+      - SA-001
+    related_design:
+      - SD-001
+    verified_by:
+      - ST-001
+  - id: SR-002
+    title: Display CT image slices
+    description: The software shall display axial CT image slices with window and level controls.
+    rationale: Users need visual inspection of CT image data.
+    related_architecture:
+      - SA-002
+    related_design:
+      - SD-002
+    verified_by:
+      - ST-002
+  - id: SR-003
+    title: Measure ROI HU statistics
+    description: The software shall calculate mean, minimum, and maximum HU values for a user-defined ROI.
+    rationale: Quantitative HU measurement supports clinical review workflows.
+    related_architecture:
+      - SA-003
+    related_design:
+      - SD-003
+    verified_by:
+      - ST-003
+  - id: SR-004
+    title: Generate AI segmentation mask
+    description: The software shall generate an AI-based segmentation mask for supported CT anatomy.
+    rationale: AI segmentation assists users in reviewing anatomical regions.
+    related_architecture:
+      - SA-004
+    related_design:
+      - SD-004
+      - SD-005
+    risk_controls:
+      - RC-001
+      - RC-002
+    verified_by:
+      - ST-004
+  - id: SR-005
+    title: Review segmentation overlay
+    description: The software shall allow users to show, hide, and visually review AI segmentation overlays.
+    rationale: AI output must remain reviewable by the intended user.
+    related_architecture:
+      - SA-005
+    related_design:
+      - SD-006
+    risk_controls:
+      - RC-001
+    verified_by:
+      - ST-005
+  - id: SR-006
+    title: Label AI-assisted measurements
+    description: The software shall indicate when a measurement uses an AI-generated segmentation mask.
+    rationale: Users need clear context for measurements derived from AI output.
+    related_architecture:
+      - SA-006
+    related_design:
+      - SD-007
+    risk_controls:
+      - RC-003
+    verified_by:
+      - ST-006
+  - id: SR-007
+    title: Export measurement report
+    description: The software shall export a measurement report including selected image metadata, ROI measurements, and AI-assistance indicators.
+    rationale: Measurement results need to be reviewed outside the software.
+    related_architecture:
+      - SA-006
+    related_design:
+      - SD-008
+    verified_by:
+      - ST-007
+

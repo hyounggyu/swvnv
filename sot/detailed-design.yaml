@@ -1,0 +1,58 @@
+design_items:
+  - id: SD-001
+    title: DICOM series validation
+    description: Validate modality, slice ordering, pixel spacing, and rescale slope/intercept before accepting an imported series.
+    related_architecture:
+      - SA-001
+    verified_by:
+      - UT-001
+  - id: SD-002
+    title: Window and level transformation
+    description: Convert HU values to display intensity using user-selected window and level settings.
+    related_architecture:
+      - SA-002
+    verified_by:
+      - UT-002
+  - id: SD-003
+    title: ROI statistics calculation
+    description: Calculate mean, minimum, and maximum HU values inside a user-defined ROI.
+    related_architecture:
+      - SA-003
+    verified_by:
+      - UT-003
+  - id: SD-004
+    title: AI preprocessing pipeline
+    description: Normalize CT input volume and prepare model input tensors according to the model specification.
+    related_architecture:
+      - SA-004
+    verified_by:
+      - UT-004
+  - id: SD-005
+    title: Segmentation mask postprocessing
+    description: Convert model output into a binary mask aligned to the source CT image geometry.
+    related_architecture:
+      - SA-004
+    verified_by:
+      - UT-005
+  - id: SD-006
+    title: Overlay visibility control
+    description: Maintain UI state for showing and hiding AI segmentation overlays without altering source image data.
+    related_architecture:
+      - SA-005
+    verified_by:
+      - UT-006
+  - id: SD-007
+    title: AI-assisted measurement labeling
+    description: Attach an AI-assistance indicator to measurements derived from AI-generated masks.
+    related_architecture:
+      - SA-006
+    verified_by:
+      - UT-007
+  - id: SD-008
+    title: Report content assembly
+    description: Assemble measurement report content from image metadata, ROI measurements, and AI-assistance indicators.
+    related_architecture:
+      - SA-006
+    verified_by:
+      - UT-008
+

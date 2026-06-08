@@ -1,0 +1,16 @@
+performance_metrics:
+  - id: MET-001
+    name: Dice Similarity Coefficient
+    description: Planned overlap metric for comparing AI-generated masks against reference masks.
+    acceptance_criterion: Mean Dice Similarity Coefficient shall be greater than or equal to 0.90 on the validation dataset.
+    related_model: MODEL-001
+    related_system_tests:
+      - ST-004
+  - id: MET-002
+    name: Mask Geometry Alignment
+    description: Planned check that segmentation masks preserve source CT geometry after postprocessing.
+    acceptance_criterion: Generated masks shall match source CT dimensions, orientation, and spacing metadata.
+    related_model: MODEL-001
+    related_system_tests:
+      - ST-004
+

@@ -1,0 +1,13 @@
+schema: detailed_design
+root: design_items
+required_fields:
+  - id
+  - title
+  - description
+  - related_architecture
+  - verified_by
+id_prefix: SD
+reference_fields:
+  related_architecture: SA
+  verified_by: UT
+
