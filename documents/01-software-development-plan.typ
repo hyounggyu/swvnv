@@ -1,9 +1,9 @@
-#import "../shared/template.typ": document
+#import "../shared/template.typ": document-template
 #import "../document-data.typ": project, doc, revision-history, plan, ai-models, datasets, performance-metrics
 #import "../shared/sections.typ": product-summary
 #import "../shared/ai.typ": ai-summary
 
-#show: document.with(
+#show: document-template.with(
   project: project(),
   doc: doc("sdp"),
   revision_history: revision-history(),

@@ -1,11 +1,11 @@
-#import "../shared/template.typ": document
+#import "../shared/template.typ": document-template
 #import "../document-data.typ": project, doc, revision-history, design-items, ai-models
 #import "../shared/sections.typ": product-summary
 #import "../shared/tables.typ": design-table
 #import "../shared/traceability.typ": design-traceability
 #import "../shared/ai.typ": ai-model-table
 
-#show: document.with(
+#show: document-template.with(
   project: project(),
   doc: doc("sdd"),
   revision_history: revision-history(),

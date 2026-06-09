@@ -25,47 +25,48 @@
   )
 }
 
-#let document(project: (:), doc: (:), revision_history: (), body) = {
+#let document-template(project: (:), doc: (:), revision_history: (), body) = {
   set document(title: doc.title, author: project.manufacturer.name)
   set page(
     paper: "a4",
     margin: (x: 20mm, y: 18mm),
     header: align(right)[#doc.number #h(1em) #doc.version],
-    footer: align(center)[Page #counter(page).display("1")]
+    footer: context align(center)[Page #counter(page).display("1")]
   )
   set text(font: "New Computer Modern", size: 10pt)
   set heading(numbering: "1.1")
 
-  align(center)[
-    #v(24mm)
-    #text(size: 22pt, weight: "bold")[#doc.title]
-    #v(8mm)
-    #text(size: 14pt)[#project.name]
-    #v(16mm)
-    #table(
-      columns: (45mm, 80mm),
-      [Document Number], [#doc.number],
-      [Version], [#doc.version],
-      [Status], [#doc.status],
-      [Manufacturer], [#project.manufacturer.name],
-      [Software Safety Class], [Class #project.software_safety_class],
-    )
+  [
+    #align(center)[
+      #v(24mm)
+      #text(size: 22pt, weight: "bold")[#doc.title]
+      #v(8mm)
+      #text(size: 14pt)[#project.name]
+      #v(16mm)
+      #table(
+        columns: (45mm, 80mm),
+        [Document Number], [#doc.number],
+        [Version], [#doc.version],
+        [Status], [#doc.status],
+        [Manufacturer], [#project.manufacturer.name],
+        [Software Safety Class], [Class #project.software_safety_class],
+      )
+    ]
+
+    #pagebreak()
+
+    = Document Control
+
+    == Revision History
+    #revision-table(revision_history)
+
+    == Approval
+    #approvals(doc.approvers)
+
+    #pagebreak()
+    #outline()
+    #pagebreak()
+
+    #body
   ]
-
-  pagebreak()
-
-  = Document Control
-
-  == Revision History
-  #revision-table(revision_history)
-
-  == Approval
-  #approvals(doc.approvers)
-
-  pagebreak()
-  outline()
-  pagebreak()
-
-  body
 }
-

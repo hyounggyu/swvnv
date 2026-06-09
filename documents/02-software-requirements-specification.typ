@@ -1,10 +1,10 @@
-#import "../shared/template.typ": document
+#import "../shared/template.typ": document-template
 #import "../document-data.typ": project, doc, revision-history, requirements, risk-controls
 #import "../shared/sections.typ": product-summary
 #import "../shared/tables.typ": requirements-table, risk-control-table
 #import "../shared/traceability.typ": requirement-traceability
 
-#show: document.with(
+#show: document-template.with(
   project: project(),
   doc: doc("srs"),
   revision_history: revision-history(),

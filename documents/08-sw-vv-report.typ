@@ -1,4 +1,4 @@
-#import "../shared/template.typ": document
+#import "../shared/template.typ": document-template
 #import "../document-data.typ": project, doc, revision-history, requirements, architecture-items, design-items, unit-tests, integration-tests, system-tests, ai-models, datasets, performance-metrics, risk-controls
 #import "../shared/sections.typ": product-summary
 #import "../shared/tables.typ": requirements-table, architecture-table, design-table, risk-control-table
@@ -6,7 +6,7 @@
 #import "../shared/traceability.typ": requirement-traceability, architecture-traceability, design-traceability
 #import "../shared/ai.typ": ai-summary
 
-#show: document.with(
+#show: document-template.with(
   project: project(),
   doc: doc("vv-report"),
   revision_history: revision-history(),

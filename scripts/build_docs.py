@@ -41,7 +41,10 @@ def main(argv: list[str] | None = None) -> int:
         source_path = ROOT / source
         target_path = output / target
         print(f"Building {target}")
-        subprocess.run([typst, "compile", str(source_path), str(target_path)], check=True)
+        subprocess.run(
+            [typst, "compile", "--root", str(ROOT), str(source_path), str(target_path)],
+            check=True,
+        )
     print(f"Built {len(DOCUMENTS)} PDF documents in {output}")
     return 0
 
