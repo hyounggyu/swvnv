@@ -28,9 +28,9 @@ Use this skill before adding or changing SWVNV skills. Prefer improving an exist
 ## Categories
 
 - `swvnv-guide-*`: route broad requests and choose the next SWVNV workflow.
-- `swvnv-context-*`: add, retrieve, or interpret Context evidence.
-- `swvnv-sot-*`: validate, inspect, or manage canonical SoT workflows.
-- `swvnv-doc-*`: orchestrate SoT and Context into document drafting or review workflows.
+- `swvnv-context-*`: add, retrieve, or interpret Context Materials evidence.
+- `swvnv-records-*`: validate, inspect, or manage V&V Records workflows.
+- `swvnv-doc-*`: orchestrate V&V Records and Context Materials into document drafting or review workflows.
 - `swvnv-tool-*`: provide reusable low-level tools used by multiple workflows.
 - `swvnv-dev-*`: manage repository environment, dependency, skill authoring, and project operations.
 
@@ -38,7 +38,7 @@ Use this skill before adding or changing SWVNV skills. Prefer improving an exist
 
 Treat a request as an existing-skill improvement when the trigger, data layer, output, and guardrails mostly match an existing skill. Examples:
 
-- Better context ingestion metadata -> improve `$swvnv-context-add`.
+- Better Context Materials ingestion metadata -> improve `$swvnv-context-add`.
 - Better PDF probing or rendering behavior -> improve `$swvnv-tool-pdf-reader`.
 - More pre-drafting checks -> improve `$swvnv-doc-drafting`.
 - Better first-step guidance -> improve `$swvnv-guide-start`.
@@ -61,14 +61,14 @@ Create a new skill only when a separate, repeatable workflow would otherwise for
 - Keep the folder name, frontmatter `name`, and `$skill-name` references identical.
 - Choose the narrowest correct category.
 - Do not create skill names for non-core review artifacts.
-- Do not create names that combine multiple layers, such as `swvnv-context-doc-*` or `swvnv-sot-tool-*`.
+- Do not create names that combine multiple layers, such as `swvnv-context-doc-*` or `swvnv-records-tool-*`.
 
 ## Guardrails
 
 - Do not create a skill only because the user said "new skill"; check existing fit first.
 - Do not add `scripts/`, `references/`, or `assets/` unless the workflow truly needs reusable resources.
 - Do not add README, changelog, installation guide, or other extra docs inside a skill.
-- Do not let one skill own Context, SoT, Doc, Tool, and Dev responsibilities at once.
+- Do not let one skill own Context Materials, V&V Records, Doc, Tool, and Dev responsibilities at once.
 
 ## Output
 

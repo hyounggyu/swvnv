@@ -11,7 +11,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTEXTS = ROOT / "contexts"
-VALIDATOR_PATH = ROOT / "scripts" / "validate_data.py"
+VALIDATOR_PATH = ROOT / "scripts" / "validate_records.py"
 
 CTX_ID_PATTERN = re.compile(r"^CTX-\d{3}$")
 CONTEXT_TYPES = {
@@ -31,16 +31,16 @@ CONTEXT_AUTHORITIES = {
     "working_context",
 }
 
-spec = importlib.util.spec_from_file_location("validate_data", VALIDATOR_PATH)
-validator = importlib.util.module_from_spec(spec)
+spec = importlib.util.spec_from_file_location("validate_records", VALIDATOR_PATH)
+records_validator = importlib.util.module_from_spec(spec)
 assert spec.loader is not None
-spec.loader.exec_module(validator)
+spec.loader.exec_module(records_validator)
 
 
 def load_yaml(path: Path) -> Any:
     if not path.is_file():
         raise FileNotFoundError(path)
-    return validator.load_yaml(path)
+    return records_validator.load_yaml(path)
 
 
 def as_list(value: Any) -> list[Any]:
@@ -57,7 +57,7 @@ def require_keys(item: dict[str, Any], keys: list[str], label: str, errors: list
             errors.append(f"{label} {item.get('id', '<missing id>')} missing required field: {key}")
 
 
-def validate_registry(known_sot: set[str]) -> tuple[set[str], list[str]]:
+def validate_registry(known_records: set[str]) -> tuple[set[str], list[str]]:
     data = load_yaml(CONTEXTS / "registry.yaml") or {}
     ids: set[str] = set()
     errors: list[str] = []
@@ -72,7 +72,7 @@ def validate_registry(known_sot: set[str]) -> tuple[set[str], list[str]]:
                 "source_path",
                 "status",
                 "authority",
-                "related_sot",
+                "related_records",
                 "summary",
             ],
             "context",
@@ -94,19 +94,19 @@ def validate_registry(known_sot: set[str]) -> tuple[set[str], list[str]]:
         source_path = item.get("source_path")
         if source_path and not (ROOT / source_path).is_file():
             errors.append(f"{item_id} source_path does not exist: {source_path}")
-        for ref in as_list(item.get("related_sot")):
-            if ref not in known_sot:
-                errors.append(f"{item_id} references unknown SoT item: {ref}")
+        for ref in as_list(item.get("related_records")):
+            if ref not in known_records:
+                errors.append(f"{item_id} references unknown Record Item: {ref}")
     return ids, errors
 
 
 def main() -> int:
     try:
-        ai_ids = validator.collect_ai_ids()
-        known_sot = set(validator.collect_items())
+        ai_ids = records_validator.collect_ai_ids()
+        known_records = set(records_validator.collect_items())
         for ids in ai_ids.values():
-            known_sot.update(ids)
-        context_ids, errors = validate_registry(known_sot)
+            known_records.update(ids)
+        context_ids, errors = validate_registry(known_records)
         if errors:
             print("Context validation failed:")
             for error in errors:

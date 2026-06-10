@@ -1,0 +1,4 @@
+interface:
+  display_name: "SWVNV V&V Records Traceability"
+  short_description: "Check V&V Records trace links"
+  default_prompt: "Use $swvnv-records-traceability to inspect SWVNV V&V Records traceability."

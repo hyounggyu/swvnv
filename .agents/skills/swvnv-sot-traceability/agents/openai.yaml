@@ -1,4 +1,0 @@
-interface:
-  display_name: "SWVNV SoT Traceability"
-  short_description: "Check canonical SoT trace links"
-  default_prompt: "Use $swvnv-sot-traceability to inspect SWVNV SoT traceability."

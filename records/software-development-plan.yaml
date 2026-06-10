@@ -4,7 +4,7 @@ plan:
   problem_resolution: Issues are tracked and resolved before document release.
   verification_strategy: Verification coverage is planned through traceability from SR items to UT, IT, and ST items.
   ai_model_controls:
-    - AI model version is recorded in the YAML source of truth.
+    - AI model version is recorded in the YAML V&V Records.
     - Validation dataset scope and planned acceptance metrics are documented before release.
     - AI segmentation is limited to assistive use and user review is required.
 

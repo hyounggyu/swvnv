@@ -1,34 +1,34 @@
 contexts:
   - id: CTX-001
     type: guide
-    title: Context repository operating guide
+    title: Context Materials repository operating guide
     source_path: contexts/README.md
     status: active
     authority: internal_reference
-    related_sot: []
+    related_records: []
     summary: >
-      Operating guidance for separating reference context from canonical SoT
+      Operating guidance for separating Context Materials from V&V Records
       during regulatory document drafting.
   - id: CTX-002
     type: working_note
-    title: SWVNV project overview and SoT/context model
+    title: SWVNV project overview and V&V Records/Context Materials model
     source_path: README.md
     status: active
     authority: working_context
-    related_sot: []
+    related_records: []
     summary: >
-      Project overview and methodology direction for the SoT plus Context
-      based regulatory documentation assistant.
+      Project overview and methodology direction for the V&V Records plus
+      Context Materials based regulatory documentation assistant.
   - id: CTX-003
     type: existing_doc
     title: CT Analysis Workstation project package
     source_path: README.md
     status: active
     authority: internal_reference
-    related_sot:
+    related_records:
       - SR-004
       - RC-001
       - ST-004
     summary: >
       IEC 62304-style SW V&V project package used to demonstrate structured
-      SoT, traceability, and document generation.
+      V&V Records, traceability, and document generation.

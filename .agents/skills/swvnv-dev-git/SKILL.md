@@ -28,7 +28,7 @@ Preferred scopes:
 
 - `skills`
 - `context`
-- `sot`
+- `records`
 - `docs`
 - `typst`
 - `python`

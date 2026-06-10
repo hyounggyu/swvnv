@@ -7,19 +7,19 @@ import importlib.util
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-VALIDATOR_PATH = ROOT / "scripts" / "validate_data.py"
+VALIDATOR_PATH = ROOT / "scripts" / "validate_records.py"
 
-spec = importlib.util.spec_from_file_location("validate_data", VALIDATOR_PATH)
-validator = importlib.util.module_from_spec(spec)
+spec = importlib.util.spec_from_file_location("validate_records", VALIDATOR_PATH)
+records_validator = importlib.util.module_from_spec(spec)
 assert spec.loader is not None
-spec.loader.exec_module(validator)
+spec.loader.exec_module(records_validator)
 
 
 def main() -> int:
-    items = validator.collect_items()
-    errors = validator.validate_references(
-        items, validator.collect_ai_ids()
-    ) + validator.validate_coverage(items)
+    items = records_validator.collect_items()
+    errors = records_validator.validate_references(
+        items, records_validator.collect_ai_ids()
+    ) + records_validator.validate_coverage(items)
     for requirement in [item for item in items.values() if item["id"].startswith("SR-")]:
         print(
             f"{requirement['id']} -> "

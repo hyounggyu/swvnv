@@ -1,0 +1,4 @@
+interface:
+  display_name: "SWVNV V&V Records Validation"
+  short_description: "Validate V&V Records and Context Materials metadata"
+  default_prompt: "Use $swvnv-records-validation to validate SWVNV V&V Records and Context Materials registry metadata."

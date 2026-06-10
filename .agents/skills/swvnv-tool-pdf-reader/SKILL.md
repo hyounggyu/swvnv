@@ -18,7 +18,7 @@ For Python setup, dependency, and execution commands, follow `$swvnv-dev-python`
    uv run python .agents/skills/swvnv-tool-pdf-reader/scripts/pdf_probe.py path/to/file.pdf --pretty
    ```
 
-3. Search the context PDFs for terms from the user request:
+3. Search the Context Materials PDFs for terms from the user request:
 
    ```sh
    uv run python .agents/skills/swvnv-tool-pdf-reader/scripts/pdf_search.py --query "keyword phrase"
@@ -48,7 +48,7 @@ Default to at most 5 rendered pages per pass, then iterate if needed.
 
 ## Evidence Discipline
 
-Treat PDF content as source evidence for the calling workflow, not canonical SoT. If PDF evidence suggests a SoT change, return page-level evidence to the workflow that will produce findings or open questions. Do not edit SoT files from this tool skill.
+Treat PDF content as Context Materials evidence for the calling workflow, not V&V Records. If PDF evidence suggests a V&V Records change, return page-level evidence to the workflow that will produce findings or open questions. Do not edit V&V Records files from this tool skill.
 
 Use this citation shape in final answers:
 

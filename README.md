@@ -1,29 +1,29 @@
 # SWVNV
 
-SWVNV는 **Source of Truth(SoT) + Context 기반 인허가 문서 AI Assistant**를 실험하는 reference implementation입니다.
+SWVNV는 **V&V Records + Context Materials 기반 인허가 문서 AI Assistant**를 실험하는 reference implementation입니다.
 
-목표는 AI가 인허가 문서를 임의로 대신 승인하거나 재작성하게 만드는 것이 아닙니다. 반복 사용되는 정규 정보와 문서 작성의 근거가 되는 context를 분리하고, AI가 이 둘을 구분해 읽으면서 문서 작성, 검토, 누락 탐지, 불일치 확인을 돕는 구조를 검증합니다.
+목표는 AI가 인허가 문서를 임의로 대신 승인하거나 재작성하게 만드는 것이 아닙니다. 반복 사용되는 관리 기록과 문서 작성의 근거가 되는 Context Materials를 분리하고, AI가 이 둘을 구분해 읽으면서 문서 작성, 검토, 누락 탐지, 불일치 확인을 돕는 구조를 검증합니다.
 
 현재 프로젝트는 가상의 독립형 CT 분석 소프트웨어를 대상으로 한 IEC 62304 스타일 Software V&V 문서 패키지입니다.
 
 ## 핵심 모델
 
-SWVNV의 핵심 데이터는 두 가지입니다.
+SWVNV의 핵심 정보 계층은 두 가지입니다.
 
-- **SoT**: 여러 문서에 반복 사용되는 기준 데이터입니다. 요구사항, 아키텍처, 상세 설계, 위험 통제, 테스트, AI model metadata, dataset, performance metric, document metadata 같은 항목을 포함합니다.
-- **Context**: 문서 작성과 판단을 돕는 근거와 배경입니다. 기존 문서, 규제 지침, 제출 템플릿, 회의록, 리뷰 코멘트, 작업 메모가 여기에 속합니다.
+- **V&V Records**: V&V 문서 생성, 검증, 추적에 직접 사용되는 구조화된 관리 기록입니다. 요구사항, 아키텍처, 상세 설계, 위험 통제, 테스트, AI model metadata, dataset, performance metric, document metadata 같은 Record Item을 포함합니다.
+- **Context Materials**: 문서 작성과 판단을 돕는 근거와 배경 자료입니다. 기존 문서, 규제 지침, 제출 템플릿, 회의록, 리뷰 코멘트, 작업 메모가 여기에 속합니다.
 
-Context는 중요하지만 곧바로 canonical truth가 아닙니다. Context에서 SoT 변경 가능성이 발견되면 finding 또는 open question으로 보고합니다. SoT 변경은 사람이 승인한 뒤 별도로 반영합니다.
+Context Materials는 중요하지만 곧바로 V&V Records가 아닙니다. Context Materials에서 V&V Records 변경 가능성이 발견되면 finding 또는 open question으로 보고합니다. V&V Records 변경은 사람이 승인한 뒤 별도로 반영합니다.
 
 ## Repository 구조
 
 ```text
 AGENTS.md         AI agent가 따라야 할 repository 운영 규칙
 .agents/          SWVNV 작업을 위한 agent skills
-sot/              YAML Source of Truth
+records/          YAML V&V Records
 documents/        Typst document entrypoints
 document-data.typ YAML loader used by Typst
-contexts/         Context registry와 참고 자료
+contexts/         Context Materials registry와 참고 자료
 scripts/          Validation, traceability, document build automation
 schemas/          Schema roadmap과 lightweight schema descriptors
 shared/           재사용 가능한 Typst renderer, table, template
@@ -70,13 +70,13 @@ uv run python scripts/validate_context.py
 
 ## Quick Start
 
-SoT를 검증합니다.
+V&V Records를 검증합니다.
 
 ```sh
-uv run python scripts/validate_data.py
+uv run python scripts/validate_records.py
 ```
 
-Context metadata를 검증합니다.
+Context Materials metadata를 검증합니다.
 
 ```sh
 uv run python scripts/validate_context.py
@@ -85,7 +85,7 @@ uv run python scripts/validate_context.py
 Traceability overview를 출력합니다.
 
 ```sh
-uv run python scripts/check_traceability.py
+uv run python scripts/check_records_traceability.py
 ```
 
 Python lint를 실행합니다.
@@ -110,22 +110,22 @@ Generated PDFs는 `build/pdf/`에 생성됩니다. Build artifact이므로 Git�
 
 ## AI Agent 작업 방식
 
-AI Agent는 SoT와 Context를 구분해 읽습니다.
+AI Agent는 V&V Records와 Context Materials를 구분해 읽습니다.
 
-- SoT는 canonical data이며, 문서에는 script/rendering path를 통해 반영합니다.
-- Context는 evidence/background이며, 설명 보완, rationale 작성, 리뷰 반영 여부 확인, 표현 개선에 사용합니다.
-- SoT 변경 가능성은 finding 또는 open question으로 보고합니다.
+- V&V Records는 관리 기록이며, 문서에는 script/rendering path를 통해 반영합니다.
+- Context Materials는 evidence/background이며, 설명 보완, rationale 작성, 리뷰 반영 여부 확인, 표현 개선에 사용합니다.
+- V&V Records 변경 가능성은 finding 또는 open question으로 보고합니다.
 
 Agent skills는 `swvnv-<category>-<name>` 규칙을 따릅니다.
 
 - `swvnv-guide-start`: 프로젝트 상태를 확인하고 다음에 사용할 SWVNV skill을 안내합니다.
-- `swvnv-context-add`: 새 context 자료를 분류하고 registry metadata를 추가합니다.
-- `swvnv-context-retrieval`: SoT 항목 또는 문서 섹션과 관련된 context evidence를 찾습니다.
-- `swvnv-context-sot-findings`: context evidence에서 SoT 변경 가능성을 finding 또는 open question으로 정리합니다.
-- `swvnv-sot-validation`: canonical SoT와 context registry metadata를 검증합니다.
-- `swvnv-sot-traceability`: SoT 항목 사이의 traceability를 확인합니다.
-- `swvnv-doc-drafting`: SoT와 context evidence를 조합해 문서 초안 또는 수정안을 작성합니다.
-- `swvnv-doc-consistency-review`: 문서 산출물, SoT, context 사이의 불일치와 누락 가능성을 찾습니다.
+- `swvnv-context-add`: 새 Context Materials를 분류하고 registry metadata를 추가합니다.
+- `swvnv-context-retrieval`: V&V Records 항목 또는 문서 섹션과 관련된 Context Materials evidence를 찾습니다.
+- `swvnv-context-records-findings`: Context Materials evidence에서 V&V Records 변경 가능성을 finding 또는 open question으로 정리합니다.
+- `swvnv-records-validation`: V&V Records와 Context Materials registry metadata를 검증합니다.
+- `swvnv-records-traceability`: V&V Records 항목 사이의 traceability를 확인합니다.
+- `swvnv-doc-drafting`: V&V Records와 Context Materials evidence를 조합해 문서 초안 또는 수정안을 작성합니다.
+- `swvnv-doc-consistency-review`: 문서 산출물, V&V Records, Context Materials 사이의 불일치와 누락 가능성을 찾습니다.
 - `swvnv-tool-pdf-reader`: PDF evidence를 검색하고 필요한 페이지만 시각적으로 확인합니다.
 - `swvnv-dev-git`: Git commit message와 repository 운영 규칙을 다룹니다.
 - `swvnv-dev-python`: uv, Ruff, Python script 규칙을 다룹니다.

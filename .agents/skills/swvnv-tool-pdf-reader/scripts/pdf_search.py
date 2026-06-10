@@ -122,7 +122,7 @@ def main() -> None:
         "--registry",
         type=Path,
         default=Path("contexts/registry.yaml"),
-        help="Context registry YAML",
+        help="Context Materials registry YAML",
     )
     parser.add_argument("--top-docs", type=int, default=8)
     parser.add_argument("--top-pages", type=int, default=5)

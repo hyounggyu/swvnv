@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate the SWVNV YAML source of truth without requiring Python packages."""
+"""Validate the SWVNV V&V Records YAML without requiring Python packages."""
 
 from __future__ import annotations
 
@@ -12,7 +12,7 @@ from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
-DATA = ROOT / "sot"
+RECORDS = ROOT / "records"
 ID_PATTERN = re.compile(r"^(SR|SA|SD|UT|IT|ST)-\d{3}$")
 YAML_FILES = [
     "project.yaml",
@@ -50,8 +50,8 @@ def load_yaml(path: Path) -> Any:
         return json.loads(result.stdout)
 
 
-def data_file(name: str) -> Any:
-    path = DATA / name
+def records_file(name: str) -> Any:
+    path = RECORDS / name
     if not path.is_file():
         raise FileNotFoundError(path)
     return load_yaml(path)
@@ -78,7 +78,7 @@ def collect_items() -> dict[str, dict[str, Any]]:
     items: dict[str, dict[str, Any]] = {}
     errors: list[str] = []
     for prefix, (filename, key) in files.items():
-        loaded.setdefault(filename, data_file(filename))
+        loaded.setdefault(filename, records_file(filename))
         for item in loaded[filename].get(key, []):
             item_id = item.get("id")
             if not item_id:
@@ -98,14 +98,14 @@ def collect_items() -> dict[str, dict[str, Any]]:
 
 def collect_ai_ids() -> dict[str, set[str]]:
     return {
-        "models": {item["id"] for item in data_file("ai-models.yaml").get("ai_models", [])},
-        "datasets": {item["id"] for item in data_file("datasets.yaml").get("datasets", [])},
+        "models": {item["id"] for item in records_file("ai-models.yaml").get("ai_models", [])},
+        "datasets": {item["id"] for item in records_file("datasets.yaml").get("datasets", [])},
         "metrics": {
             item["id"]
-            for item in data_file("performance-metrics.yaml").get("performance_metrics", [])
+            for item in records_file("performance-metrics.yaml").get("performance_metrics", [])
         },
         "risk_controls": {
-            item["id"] for item in data_file("risk-controls.yaml").get("risk_controls", [])
+            item["id"] for item in records_file("risk-controls.yaml").get("risk_controls", [])
         },
     }
 
@@ -144,7 +144,7 @@ def validate_references(items: dict[str, dict[str, Any]], ai_ids: dict[str, set[
             if ref not in risk_controls:
                 errors.append(f"{item_id} references unknown risk control: {ref}")
 
-    for model in data_file("ai-models.yaml").get("ai_models", []):
+    for model in records_file("ai-models.yaml").get("ai_models", []):
         require_fields(
             [model],
             ["id", "name", "version", "task", "related_requirements", "related_system_tests"],
@@ -161,7 +161,7 @@ def validate_references(items: dict[str, dict[str, Any]], ai_ids: dict[str, set[
                 if ref not in known:
                     errors.append(f"{model['id']} references unknown {field}: {ref}")
 
-    for dataset in data_file("datasets.yaml").get("datasets", []):
+    for dataset in records_file("datasets.yaml").get("datasets", []):
         require_fields(
             [dataset],
             ["id", "name", "purpose", "sample_count", "related_model", "related_system_tests"],
@@ -176,7 +176,7 @@ def validate_references(items: dict[str, dict[str, Any]], ai_ids: dict[str, set[
             if ref not in known:
                 errors.append(f"{dataset['id']} references unknown system test: {ref}")
 
-    for metric in data_file("performance-metrics.yaml").get("performance_metrics", []):
+    for metric in records_file("performance-metrics.yaml").get("performance_metrics", []):
         require_fields(
             [metric],
             ["id", "name", "acceptance_criterion", "related_model", "related_system_tests"],
@@ -189,7 +189,7 @@ def validate_references(items: dict[str, dict[str, Any]], ai_ids: dict[str, set[
             if ref not in known:
                 errors.append(f"{metric['id']} references unknown system test: {ref}")
 
-    for control in data_file("risk-controls.yaml").get("risk_controls", []):
+    for control in records_file("risk-controls.yaml").get("risk_controls", []):
         require_fields(
             [control],
             ["id", "title", "risk", "control", "related_requirements", "verified_by"],
@@ -226,10 +226,10 @@ def validate_coverage(items: dict[str, dict[str, Any]]) -> list[str]:
 def main(argv: list[str] | None = None) -> int:
     del argv
     try:
-        if not DATA.is_dir():
-            raise FileNotFoundError(f"project has no sot directory: {DATA}")
+        if not RECORDS.is_dir():
+            raise FileNotFoundError(f"project has no records directory: {RECORDS}")
         for filename in YAML_FILES:
-            data_file(filename)
+            records_file(filename)
         items = collect_items()
         ai_ids = collect_ai_ids()
         errors = []
@@ -240,7 +240,10 @@ def main(argv: list[str] | None = None) -> int:
             for error in errors:
                 print(f"- {error}")
             return 1
-        print(f"Validation passed for project: {len(items)} SR/SA/SD/UT/IT/ST items checked.")
+        print(
+            f"Records validation passed for project: "
+            f"{len(items)} SR/SA/SD/UT/IT/ST Record Items checked."
+        )
         return 0
     except Exception as exc:
         print(f"Validation failed: {exc}", file=sys.stderr)

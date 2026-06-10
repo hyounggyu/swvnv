@@ -24,7 +24,7 @@ Use this skill for Typst document sources and PDF builds.
 
 - `typst` must be on `PATH` for PDF builds.
 - Generated PDFs are build artifacts.
-- Do not edit SoT data to fix Typst layout unless the user asks for a SoT change.
+- Do not edit V&V Records data to fix Typst layout unless the user asks for a V&V Records change.
 - Use `$swvnv-dev-python` for Python script, uv, Ruff, or dependency work.
 
 ## Output

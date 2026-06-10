@@ -1,4 +1,4 @@
 interface:
-  display_name: "SWVNV Context Retrieval"
-  short_description: "Find context evidence for SoT or document work"
-  default_prompt: "Use $swvnv-context-retrieval to find relevant SoT and context evidence."
+  display_name: "SWVNV Context Materials Retrieval"
+  short_description: "Find Context Materials evidence for V&V Records or document work"
+  default_prompt: "Use $swvnv-context-retrieval to find relevant V&V Records and Context Materials evidence."

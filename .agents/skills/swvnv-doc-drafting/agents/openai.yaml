@@ -1,4 +1,4 @@
 interface:
   display_name: "SWVNV Doc Drafting"
-  short_description: "Draft documents from SoT and context"
+  short_description: "Draft documents from V&V Records and Context Materials"
   default_prompt: "Use $swvnv-doc-drafting to draft or revise a regulatory document section."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "SWVNV Context-to-Records Findings"
+  short_description: "Report Context Materials-derived V&V Records gaps"
+  default_prompt: "Use $swvnv-context-records-findings to report possible V&V Records changes from Context Materials evidence."

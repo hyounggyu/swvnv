@@ -1,4 +1,0 @@
-interface:
-  display_name: "SWVNV SoT Validation"
-  short_description: "Validate SoT and context metadata"
-  default_prompt: "Use $swvnv-sot-validation to validate SWVNV SoT and context registry metadata."

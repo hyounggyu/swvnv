@@ -1,4 +1,4 @@
 interface:
-  display_name: "SWVNV Context Add"
-  short_description: "Add context files and registry metadata"
-  default_prompt: "Use $swvnv-context-add to ingest new SWVNV context material and update the context registry."
+  display_name: "SWVNV Context Materials Add"
+  short_description: "Add Context Materials and registry metadata"
+  default_prompt: "Use $swvnv-context-add to ingest new SWVNV Context Materials and update the Context Materials registry."

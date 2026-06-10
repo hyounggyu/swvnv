@@ -2,12 +2,12 @@
 
 This directory describes the schema roadmap for SWVNV.
 
-The current repository uses lightweight validation scripts so the reference implementation can run without installing additional schema tooling. The long-term direction is stricter machine-readable schemas for core SoT and Context data.
+The current repository uses lightweight validation scripts so the reference implementation can run without installing additional schema tooling. The long-term direction is stricter machine-readable schemas for V&V Records and Context Materials metadata.
 
 ## Schema Families
 
-- **SoT schemas**: canonical regulatory objects such as requirements, architecture items, design items, tests, risk controls, AI models, datasets, performance metrics, and document metadata.
-- **Context registry schema**: metadata for reference materials used during drafting and review.
+- **V&V Records schemas**: controlled regulatory Record Items such as requirements, architecture items, design items, tests, risk controls, AI models, datasets, performance metrics, and document metadata.
+- **Context Materials registry schema**: metadata for reference materials used during drafting and review.
 - **Document schema**: document identity, status, revision history, approvers, output mapping, and generated artifact metadata.
 
 ## Current Validation
@@ -15,7 +15,7 @@ The current repository uses lightweight validation scripts so the reference impl
 The active validation entrypoints are:
 
 ```sh
-uv run python scripts/validate_data.py
+uv run python scripts/validate_records.py
 uv run python scripts/validate_context.py
 ```
 

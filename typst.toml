@@ -3,4 +3,4 @@ name = "swvnv"
 version = "0.1.0"
 entrypoint = "documents/08-sw-vv-report.typ"
 authors = ["SWVNV contributors"]
-description = "SoT and context based regulatory documentation AI assistant reference implementation."
+description = "V&V Records and Context Materials based regulatory documentation AI assistant reference implementation."

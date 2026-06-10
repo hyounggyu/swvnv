@@ -1,4 +1,4 @@
 interface:
   display_name: "SWVNV Doc Consistency Review"
-  short_description: "Find SoT, context, and document gaps"
+  short_description: "Find V&V Records, Context Materials, and document gaps"
   default_prompt: "Use $swvnv-doc-consistency-review to review SWVNV document consistency and traceability."
