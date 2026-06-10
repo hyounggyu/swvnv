@@ -1,0 +1,4 @@
+interface:
+  display_name: "SWVNV V&V Records Workbook"
+  short_description: "Manage tracked V&V Records workbooks"
+  default_prompt: "Use $swvnv-records-workbook to export, import, review, and validate the tracked V&V Records Workbook."

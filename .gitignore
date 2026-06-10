@@ -1,6 +1,5 @@
 build/
 dist/
-vnv-records.xlsx
 *.pdf
 *.png
 *.jpg
