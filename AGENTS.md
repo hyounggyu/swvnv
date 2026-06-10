@@ -54,6 +54,13 @@ uv run python scripts/check_records_traceability.py
 uv run ruff check .
 ```
 
+V&V Records Workbook은 사람이 편집하기 위한 Excel representation입니다. Canonical source는 `records/*.yaml`입니다.
+
+```sh
+uv run python scripts/export_records_workbook.py --output vnv-records.xlsx
+uv run python scripts/import_records_workbook.py vnv-records.xlsx --dry-run
+```
+
 Python formatting은 명시적으로 요청된 경우에만 실행합니다.
 
 ```sh

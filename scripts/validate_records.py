@@ -8,6 +8,7 @@ import re
 import shutil
 import subprocess
 import sys
+from argparse import ArgumentParser
 from pathlib import Path
 from typing import Any
 
@@ -224,7 +225,19 @@ def validate_coverage(items: dict[str, dict[str, Any]]) -> list[str]:
 
 
 def main(argv: list[str] | None = None) -> int:
-    del argv
+    global RECORDS
+
+    parser = ArgumentParser(description="Validate SWVNV V&V Records YAML.")
+    parser.add_argument(
+        "--records-dir",
+        type=Path,
+        default=RECORDS,
+        help="Directory containing V&V Records YAML files.",
+    )
+    args = parser.parse_args(argv)
+
+    RECORDS = args.records_dir.resolve()
+
     try:
         if not RECORDS.is_dir():
             raise FileNotFoundError(f"project has no records directory: {RECORDS}")

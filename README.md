@@ -88,6 +88,24 @@ Traceability overview를 출력합니다.
 uv run python scripts/check_records_traceability.py
 ```
 
+V&V Records Workbook을 생성합니다. Excel 파일은 사람이 검토하고 편집하기 위한 표면이며, `records/*.yaml`이 canonical source입니다.
+
+```sh
+uv run python scripts/export_records_workbook.py --output vnv-records.xlsx
+```
+
+편집한 V&V Records Workbook을 검증합니다. 이 명령은 YAML 파일을 변경하지 않습니다.
+
+```sh
+uv run python scripts/import_records_workbook.py vnv-records.xlsx --dry-run
+```
+
+검증을 통과한 workbook을 `records/*.yaml`에 반영합니다.
+
+```sh
+uv run python scripts/import_records_workbook.py vnv-records.xlsx
+```
+
 Python lint를 실행합니다.
 
 ```sh
