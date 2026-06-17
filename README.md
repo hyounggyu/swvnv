@@ -6,6 +6,9 @@ SWVNV는 **V&V Records + Context Materials 기반 인허가 문서 AI Assistant*
 
 현재 프로젝트는 가상의 독립형 CT 분석 소프트웨어를 대상으로 한 IEC 62304 스타일 Software V&V 문서 패키지입니다.
 
+> 배경과 작업 과정을 먼저 보고 싶다면
+> [SW V&V 문서 작성에 AI 에이전트 활용하기](https://hyounggyu.com/2026/06/17/sw-vv-writing-with-ai-agent/)를 참고하세요.
+
 ## 핵심 모델
 
 SWVNV의 핵심 정보 계층은 두 가지입니다.
